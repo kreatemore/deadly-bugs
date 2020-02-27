@@ -27,33 +27,14 @@
       </h1>
     </div>
   </header>
-  <pre class="code-block">
-  const nextUrl = window.location.search;
 
-  if (nextUrl == "https://www.google.com") {
-    throw new Error("No redirects to Google!")
-  } else {
-    window.location.replace(nextUrl);
-  }
-</pre>
-  <div class="footer">
-    <div id="solution" class="hidden">
-      <div class="header">What?</div>
-      While we can't use google.com, we could certainly try using the site's IP,
-      like: https://216.58.214.238
-
-      <div class="header">How to prevent?</div>
-      Guarding against these would require a proper security design, but
-      for the sake of example, you could forbid using IP addresses.
-    </div>
-    <button onclick="showSolution()"
-      class="button button--secondary">
-      <span>Show solution</span>
-    </button>
-    <a href="04.html">
+  <div style="font-size:72px; text-align: center">
+    🎉
+    <br>
+    <a href="index.html">
       <button
-        class="button button--primary">
-        Next 👉
+        class="button button--secondary">
+        🐞 Start again
       </button>
     </a>
   </div>
