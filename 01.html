@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>What's the deadly bug?</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+    rel="stylesheet">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<div class="container">
+  <header class="page-title">
+    <div class="page-title__text-container">
+      <h1 class="page-title__text">
+        What's the deadly bug?
+      </h1>
+    </div>
+  </header>
+  <pre class="code-block">
+  // client side
+  user = http.post(
+    '/api/auth',
+    username,
+    password,
+  );
+
+  if (user.isLoggedIn)
+    const s = new WebSocket('ws://api/chat');
+
+  // server side
+  @route('/api/auth')
+  def get_user(request):
+    return db.find(
+      user=request.data.username,
+      password=_hash(request.data.password),
+    )
+
+  @route('/api/chat')
+  def stream_chat(request):
+    yield db.select('chat_messages')
+</pre>
+  <div class="footer">
+    <div id="solution" class="hidden">
+      <div class="header">What?</div>
+      While authentication is correctly checked in the client code,
+      there's no permission check when connecting to WebSocket.
+
+      <div class="header">How to prevent?</div>
+      <div>
+        Don't assume that connections will only come from your app
+        (where users might already be authenticated).
+        <br>
+        <br>
+        Always check permissions server-side.
+      </div>
+    </div>
+    <button onclick="showSolution()"
+      class="button button--secondary">
+      <span>Show solution</span>
+    </button>
+    <a href="02.html">
+      <button
+        class="button button--primary">
+        Next 👉
+      </button>
+    </a>
+  </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+
+</html>

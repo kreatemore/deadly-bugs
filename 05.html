@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>What's the deadly bug?</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+    rel="stylesheet">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<div class="container">
+  <header class="page-title">
+    <div class="page-title__text-container">
+      <h1 class="page-title__text">
+        What's the deadly bug?
+      </h1>
+    </div>
+  </header>
+  <pre class="code-block">
+  def reset_password(email):
+    # Get rid of funky chars
+    cleaned_email = email.decode('utf-8') \
+                    .encode('ascii', 'ignore')
+    user = db.find(email=cleaned_email)
+
+    if user.exists():
+      send_reset_mail(cleaned_email)
+    else:
+      raise UserNotFoundException()
+</pre>
+  <div class="footer">
+    <div id="solution" class="hidden">
+      <div class="header">What?</div>
+      We could reset any user's password with a similar email address.
+      <br>
+      There are two flaws that allows us to do so:
+      <br>
+      1. We convert UTF-8 chars to ASCII. We might be doing this out of fear of the unknown
+      <br>
+      2. We aren't using the email address stored in the db, but the one that was supplied.
+      It should be fine, since they're equal, so it doesn't matter which one, right?
+      <br>
+      <br>
+      dévice@horsefucker.org will be
+      converted to device@horsefucker.org. This will find the user in the db,
+      even though the email address isn't the same. Since the code thinks the user
+      has the same email, it'll happily send a new password, but it will send it
+      to our address.
+
+      <div class="header">How to prevent?</div>
+      The easiest solution here would be to use the email coming from the db.
+      You could still trigger a reset email, but the only thing that would do
+      is to alert the person you're trying to hack.
+    </div>
+    <button onclick="showSolution()"
+      class="button button--secondary">
+      <span>Show solution</span>
+    </button>
+    <a href="05.html">
+      <button
+        class="button button--primary">
+        Next 👉
+      </button>
+    </a>
+  </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+
+</html>

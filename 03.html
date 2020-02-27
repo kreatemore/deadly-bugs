@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>What's the deadly bug?</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+    rel="stylesheet">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<div class="container">
+  <header class="page-title">
+    <div class="page-title__text-container">
+      <h1 class="page-title__text">
+        What's the deadly bug?
+      </h1>
+    </div>
+  </header>
+  <pre class="code-block">
+  const nextUrl = window.location.search;
+
+  if (nextUrl == "https://www.google.com") {
+    throw new Error("No redirects to Google!")
+  } else {
+    window.location.replace(nextUrl);
+  }
+</pre>
+  <div class="footer">
+    <div id="solution" class="hidden">
+      <div class="header">What?</div>
+      While we can't use google.com, we could certainly try using the site's IP,
+      like: https://216.58.214.238
+
+      <div class="header">How to prevent?</div>
+      <div>
+        Guarding against these would require a proper security design, but
+        for the sake of example, you could forbid using IP addresses.
+      </div>
+    </div>
+    <button onclick="showSolution()"
+      class="button button--secondary">
+      <span>Show solution</span>
+    </button>
+    <a href="04.html">
+      <button
+        class="button button--primary">
+        Next 👉
+      </button>
+    </a>
+  </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+
+</html>
